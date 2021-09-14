@@ -46,13 +46,24 @@ const app = Vue.createApp({
       }
       producto.stock -- ;
     },
+    eliminarmedicina(producto){
+      let cosa = this.medicina.filter(
+        miembro => miembro._id == producto._id
+      )[0];
+      cosa.stock += producto.stock
+      let index = 0
+      this.cosasdecompra.forEach((product,i)=>{
+        product._id == producto._id ? (index = i) : null
+      })
+      this.cosasdecompra.splice(index,1)
+    }
   },
   computed: {
     cantidaddecarrito(){
      return this.cosasdecompra.reduce((accumulador,string)=>accumulador+ string.cant,0)
     },
     totaldecarrito(){
-      this.cosasdecompra.reduce((accumulador,string)=>accumulador + string.cant * string.precio,0)
+      return this.cosasdecompra.reduce((accumulador,string)=>accumulador + string.cant * string.precio,0)
     }
 
 
