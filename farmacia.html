@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Farmacia</title>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./farmacia.html">farmacia</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./juguetes.html">juguetes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./contactanos.html">contactanos</a>
+                            </li>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    carrito:
+                                    <div class="dropdown-iten">
+                                        <p>producto : {{cantidaddecarrito}}</p>
+                                        <p>total : {{totaldecarrito}}</p>
+                                    </div>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <div v-for="producto in cosasdecompra">
+                                        <p class="dropdown-item">{{producto.name}}</p>
+                                        <p class="dropdown-item">cant:{{producto.cant}}</p>
+                                        <p class="dropdown-item">precio:{{producto.precio}}</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                    </div>
+
+                    </ul>
+                </div>
+
+            </nav>
+        </header>
+
+        <main class="container-fluid justify-content-between align-items-center">
+            <div class="row justify-content-around">
+                <div v-for="producto in medicina" class="card p-0 pt-2 col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 m-3"
+                    style="width: 18rem;">
+                    <img :src="producto.imagen" alt="imagen demostrativa">
+                    <div class="card-body ">
+                        <h5 class="card-title">{{producto.nombre}}</h5>
+                        <p class="card-text">{{producto.descripcion}}</p>
+                        <p class="card-text">${{producto.precio}}</p>
+                        <p class="card-text">Stocks {{producto.stock}}</p>
+                        <button v-if="producto.stock > 0" class="btn btn-primary"
+                            @click="addcarrito(producto)">comprar</button>
+                        <button v-else class="btn btn-primary" disabled>no stock</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./scripts/app.js"></script>
+    <!-- <script src="./scripts/main.js"></script> -->
+</body>
+
+</html>
